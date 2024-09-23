@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1qivy7or524b"
-path="res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex"
+uid="uid://balewvl8jhyeu"
+path="res://.godot/imported/BG Tiles 1.0.png-102254f1756563c084b5eaaa909c0bb7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=["res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex"]
+source_file="res://Textures/BG Tiles 1.0.png"
+dest_files=["res://.godot/imported/BG Tiles 1.0.png-102254f1756563c084b5eaaa909c0bb7.ctex"]
 
 [params]
 
