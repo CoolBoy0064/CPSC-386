@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bshpmt7i4511x"]
+
+[sub_resource type="Theme" id="Theme_tesk3"]
+
+[node name="HealthBar" type="ProgressBar"]
+offset_left = -52.0
+offset_right = 52.0
+offset_bottom = 14.0
+theme = SubResource("Theme_tesk3")
+step = 1.0
+show_percentage = false

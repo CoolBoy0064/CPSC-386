@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cehk88cqu33ou"]
+[gd_scene load_steps=19 format=3 uid="uid://cehk88cqu33ou"]
 
 [ext_resource type="Script" path="res://player.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://0tt7ms00mx6c" path="res://Textures/Adam Spriteson/AttackDown1.png" id="2_2g1bk"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cgw11q2bg3di5" path="res://Textures/Adam Spriteson/MoveUp1.png" id="14_6h8hj"]
 [ext_resource type="Texture2D" uid="uid://cpajcu8e3wm5o" path="res://Textures/Adam Spriteson/MoveUp2.png" id="15_vmhxu"]
 [ext_resource type="PackedScene" uid="uid://dq8jphu61it77" path="res://pause_menu.tscn" id="16_n7dqo"]
+[ext_resource type="PackedScene" uid="uid://bshpmt7i4511x" path="res://health_bar.tscn" id="17_qbsyb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0mr0g"]
 animations = [{
@@ -134,3 +135,9 @@ offset_left = -36.0
 offset_top = -106.0
 offset_right = -36.0
 offset_bottom = -106.0
+
+[node name="HealthBar" parent="." instance=ExtResource("17_qbsyb")]
+offset_top = 37.0
+offset_bottom = 51.0
+max_value = 200.0
+script = null

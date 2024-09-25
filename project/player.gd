@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
-@onready var Sword = preload("res://Swipe.tscn")
+@onready var Sword = preload("res://AttackScenes/Swipe.tscn")
 @export var speed = 200
 @onready var main = get_tree().get_root().get_node("Overworld")
-@export var attackSpeed = 30
+@export var attackSpeed = 0.5 #how fast in seconds we can attack
+@export var MAX_HEALTH = 200
 var attackInterval = 0
 var face = 1 #tracks the direction the player is facing for idle animations
 var paused = 0
+var health = MAX_HEALTH
 # Declare member variables here. Examples:
 # var a: int = 2
 # var b: String = "text"
@@ -14,7 +16,7 @@ var paused = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$HealthBar.value = MAX_HEALTH
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,7 +26,7 @@ func _process(delta: float) -> void:
 	var direction = Input.get_vector("Left", "Right", "Up", "Down")
 	velocity = direction * speed
 	move_and_slide()
-	attackInterval += 1
+	
 	if (velocity == Vector2.ZERO && !Input.is_action_pressed("Attack")):
 		if(face == 1):
 			$Sprite.play("IdleRight")
@@ -66,19 +68,23 @@ func _process(delta: float) -> void:
 			$Sprite.flip_h = 1
 			$Sprite.play("AttackRight")
 			face = 1
-		if(attackInterval >= attackSpeed):
+		if(attackInterval <= 0): #if attackSpeed seconds has passed
 			swing()
-			attackInterval = 0
+			attackInterval = attackSpeed 
+		attackInterval -= delta #subtract the attack interval from the amount of time that has elapsed sinse the last frame
 # tutorial from Net Ninja on youtube followed for some of the code
 
 
 func swing():
-	var swipe = Sword.instantiate()
+	var swipe = Sword.instantiate() #Create a swing instance
 	var spawnPoint = $Origin.global_position
 	var spawnDirection = spawnPoint.angle_to_point(get_global_mouse_position())
 	swipe.global_position = spawnPoint
 	swipe.global_rotation = spawnDirection
-	main.add_child.call_deferred(swipe)
+	swipe.setDamage(50)
+	main.add_child.call_deferred(swipe) #make the swipe a child of the main scene, so that the swing does not follow the player
+	
+
 		
 		
 func pause():
@@ -89,3 +95,10 @@ func pause():
 		$PauseMenu.show()
 		paused = 1
 	pass
+
+func handle_hit(dmg):
+	health -= dmg
+	if (health <= 0):
+		health = 200
+	$HealthBar.value = health
+	
