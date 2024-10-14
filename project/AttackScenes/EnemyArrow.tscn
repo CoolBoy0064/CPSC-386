@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0it1piwlaecu"]
+
+[ext_resource type="Script" path="res://AttackScenes/projectile.gd" id="1_u6ic5"]
+[ext_resource type="Texture2D" uid="uid://dpt34f6qmp0k1" path="res://Textures/Arrow.png" id="2_ln1vq"]
+
+[node name="Arrow" type="Area2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_u6ic5")
+range = 750000
+damage = 75
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.785955
+texture = ExtResource("2_ln1vq")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+rotation = 0.785398
+polygon = PackedVector2Array(-35, 16, 9, -33, 31, -32, 32, -8, -19, 35)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

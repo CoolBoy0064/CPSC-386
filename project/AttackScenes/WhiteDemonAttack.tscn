@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvsuhknvg1pym"]
+
+[ext_resource type="Script" path="res://AttackScenes/SpinningProjectile.gd" id="1_coio3"]
+[ext_resource type="Texture2D" uid="uid://bd0q8ahhf6m6k" path="res://Textures/WhiteDemon/WhiteDemonProjectile.png" id="2_pfcvu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_grafe"]
+radius = 36.3456
+
+[node name="WhiteDemonAttack" type="Area2D"]
+position = Vector2(1, 0)
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_coio3")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_pfcvu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_grafe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
