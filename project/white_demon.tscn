@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://dl3jbx220vowu"]
+
+[ext_resource type="Script" path="res://WhiteDemon.gd" id="1_31nxg"]
+[ext_resource type="Texture2D" uid="uid://de3s3yfi8q1rd" path="res://Textures/WhiteDemon/White_Demon.png" id="2_f8v1c"]
+[ext_resource type="Texture2D" uid="uid://c2bj5ilhink7x" path="res://Textures/WhiteDemon/White_Demon_Attack.png" id="3_dwjp1"]
+[ext_resource type="Texture2D" uid="uid://d2k51gehdqnql" path="res://Textures/WhiteDemon/White_Demon_Move1.png" id="4_s2e23"]
+[ext_resource type="Texture2D" uid="uid://7agg5c7dhasg" path="res://Textures/WhiteDemon/White_Demon_Move2.png" id="5_80c8p"]
+[ext_resource type="AudioStream" uid="uid://bm8r6i02qxacd" path="res://Sounds/WhiteDemonHIt.ogg" id="6_3x570"]
+[ext_resource type="AudioStream" uid="uid://d254y86uc42by" path="res://Sounds/WhiteDemonDeath.ogg" id="7_e4hyg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s6oee"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f8v1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dwjp1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_f8v1c")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f8v1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s2e23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_80c8p")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f8v1c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p3g18"]
+radius = 2885.17
+
+[node name="WhiteDemon" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_31nxg")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_s6oee")
+frame_progress = 0.391881
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-258, 507, 253, 508, 446, 129, 510, -257, 126, -514, -128, -513, -516, -254, -447, 186)
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_p3g18")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -132.0
+offset_top = 274.0
+offset_right = 130.0
+offset_bottom = 301.0
+max_value = 1000.0
+show_percentage = false
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_3x570")
+volume_db = 10.0
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_e4hyg")
+volume_db = 10.0
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]

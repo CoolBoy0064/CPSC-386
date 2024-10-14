@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cehk88cqu33ou"]
+[gd_scene load_steps=21 format=3 uid="uid://cehk88cqu33ou"]
 
 [ext_resource type="Script" path="res://player.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://0tt7ms00mx6c" path="res://Textures/Adam Spriteson/AttackDown1.png" id="2_2g1bk"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d343fvibarj71" path="res://Textures/Adam Spriteson/AttackUp1.png" id="6_4vsf3"]
 [ext_resource type="Texture2D" uid="uid://bsb3cdbi557fe" path="res://Textures/Adam Spriteson/AttackUp2.png" id="7_j0ru8"]
 [ext_resource type="Texture2D" uid="uid://u8qjycbbv0uo" path="res://Textures/Adam Spriteson/IdleDown.png" id="8_ie85d"]
+[ext_resource type="Texture2D" uid="uid://cl5610u7u8xo8" path="res://Textures/Adam Spriteson/Tombstone.png" id="8_l1jyp"]
 [ext_resource type="Texture2D" uid="uid://dbosfvruq1ly0" path="res://Textures/Adam Spriteson/IdleUp.png" id="10_c5upp"]
 [ext_resource type="Texture2D" uid="uid://bjq86488frff5" path="res://Textures/Adam Spriteson/MoveDown.png" id="11_jiwd4"]
 [ext_resource type="Texture2D" uid="uid://boftowv743yyo" path="res://Textures/Adam Spriteson/MoveDown2.png" id="12_y301a"]
@@ -17,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cpajcu8e3wm5o" path="res://Textures/Adam Spriteson/MoveUp2.png" id="15_vmhxu"]
 [ext_resource type="PackedScene" uid="uid://dq8jphu61it77" path="res://pause_menu.tscn" id="16_n7dqo"]
 [ext_resource type="PackedScene" uid="uid://bshpmt7i4511x" path="res://health_bar.tscn" id="17_qbsyb"]
+[ext_resource type="PackedScene" uid="uid://bdoeiag3lmggq" path="res://game_over.tscn" id="19_xgt10"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0mr0g"]
 animations = [{
@@ -52,6 +54,14 @@ animations = [{
 "loop": true,
 "name": &"AttackUp",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_l1jyp")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -118,7 +128,7 @@ script = ExtResource("2")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0mr0g")
-animation = &"IdleUp"
+animation = &"MoveRight"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -131,13 +141,21 @@ rotation = 0.221209
 
 [node name="PauseMenu" parent="." instance=ExtResource("16_n7dqo")]
 visible = false
-offset_left = -36.0
-offset_top = -106.0
-offset_right = -36.0
-offset_bottom = -106.0
+offset_left = -59.0
+offset_top = -110.0
+offset_right = -59.0
+offset_bottom = -110.0
 
 [node name="HealthBar" parent="." instance=ExtResource("17_qbsyb")]
-offset_top = 37.0
-offset_bottom = 51.0
+offset_left = -151.0
+offset_top = 486.0
+offset_right = 152.0
+offset_bottom = 528.0
 max_value = 200.0
-script = null
+
+[node name="GameOver" parent="." instance=ExtResource("19_xgt10")]
+visible = false
+offset_left = 2.0
+offset_top = -249.0
+offset_right = 2.0
+offset_bottom = -249.0

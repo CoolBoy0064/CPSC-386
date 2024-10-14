@@ -45,6 +45,7 @@ func destroy():
 
 func handle_hit(dmg):
 	health -= dmg
+	$HitSound.play()
 
 
 func swing(direction):

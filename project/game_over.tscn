@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdoeiag3lmggq"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_jgish"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5k38r"]
+font_size = 40
+font_color = Color(0.880291, 0.260833, 0, 1)
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jgish")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -114.0
+offset_top = -29.0
+offset_right = 115.0
+offset_bottom = 26.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_5k38r")
+
+[node name="Continue" type="Button" parent="."]
+layout_mode = 0
+offset_left = -170.0
+offset_top = 136.0
+offset_right = -91.0
+offset_bottom = 167.0
+text = "Continue"
+
+[node name="SaveAndQuit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 136.0
+offset_right = 184.0
+offset_bottom = 167.0
+text = "Save and Quit"
+
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="SaveAndQuit" to="." method="_on_save_and_quit_pressed"]

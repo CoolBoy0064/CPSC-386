@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://b0n50mqejqe4e"]
+
+[ext_resource type="Script" path="res://demon_archer.gd" id="1_wbwkr"]
+[ext_resource type="Texture2D" uid="uid://c5kwdqu8cwud1" path="res://Textures/DemonArcher/ArtcherAttack1.png" id="2_y7avy"]
+[ext_resource type="Texture2D" uid="uid://bgyx722besofj" path="res://Textures/DemonArcher/ArcherAttack2.png" id="3_o6g5i"]
+[ext_resource type="Texture2D" uid="uid://dcwxinaj4xsyt" path="res://Textures/DemonArcher/ArcherIdle.png" id="4_7mfuv"]
+[ext_resource type="AudioStream" uid="uid://4vndnjsewfb0" path="res://Sounds/Demons_hit.ogg" id="5_qhltt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2mb1c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y7avy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_o6g5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7mfuv")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7mfuv")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4cgf0"]
+size = Vector2(66, 63)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_05n67"]
+radius = 486.103
+
+[node name="DemonArcher" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_wbwkr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2mb1c")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_4cgf0")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_05n67")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_qhltt")
+volume_db = 10.0
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]

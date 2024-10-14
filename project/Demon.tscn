@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b631d20ybwopx"]
+[gd_scene load_steps=8 format=3 uid="uid://b631d20ybwopx"]
 
 [ext_resource type="Script" path="res://demon.gd" id="1_lidu3"]
 [ext_resource type="Texture2D" uid="uid://dbj6lv4jm4480" path="res://Textures/WideDemon/DemonAttack1.png" id="2_owd2s"]
 [ext_resource type="Texture2D" uid="uid://cosxayos317lb" path="res://Textures/WideDemon/DemonAttack2.png" id="3_wpp64"]
 [ext_resource type="Texture2D" uid="uid://vyxgknkpxgxj" path="res://Textures/WideDemon/WideDemonIdle.png" id="4_kho0g"]
+[ext_resource type="AudioStream" uid="uid://4vndnjsewfb0" path="res://Sounds/Demons_hit.ogg" id="5_2yt4o"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lj8j2"]
 animations = [{
@@ -52,3 +53,7 @@ polygon = PackedVector2Array(-49, -39, 48, -39, 49, 40, -49, 40)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1, 2)
 shape = SubResource("CircleShape2D_swi0r")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_2yt4o")
+volume_db = 10.0
