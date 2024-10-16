@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dcyc0b5lri1xr"]
 
 [ext_resource type="Script" path="res://LevelTransition.gd" id="1_do3v8"]
-[ext_resource type="PackedScene" uid="uid://b7asnvk1c7ne0" path="res://dungeon.tscn" id="2_b3l25"]
+[ext_resource type="PackedScene" uid="uid://b7asnvk1c7ne0" path="res://Dungeon.tscn" id="2_b3l25"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijb8v"]
 size = Vector2(116, 106)

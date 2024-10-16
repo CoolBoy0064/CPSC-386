@@ -22,7 +22,7 @@ func _on_volume_value_changed(value: float) -> void:
 	if (value == 0):
 		AudioServer.set_bus_mute(0, 1)
 		return
-	if (!AudioServer.get_bus_mute(0)):
+	else:
 		AudioServer.set_bus_mute(0, 0)
 	var volume_change = value/10
 	AudioServer.set_bus_volume_db(0, volume_change)
@@ -48,3 +48,10 @@ func _on_resolutions_item_selected(index: int) -> void:
 			DisplayServer.window_set_size(Vector2(1600, 900))
 		3:
 			DisplayServer.window_set_size(Vector2(1280, 720))
+
+
+func _on_load_game_pressed() -> void:
+	if(SaveGame.loadScene == null):
+		return #if we have no save data dont do anything
+	SaveGame.loadGame = true
+	get_tree().change_scene_to_packed(SaveGame.loadScene)

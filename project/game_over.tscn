@@ -38,7 +38,7 @@ offset_left = 68.0
 offset_top = 136.0
 offset_right = 184.0
 offset_bottom = 167.0
-text = "Save and Quit"
+text = "Title Screen"
 
 [connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="SaveAndQuit" to="." method="_on_save_and_quit_pressed"]

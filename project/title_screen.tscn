@@ -778,6 +778,7 @@ item_count = 4
 popup/item_0/text = "3440x1440"
 popup/item_0/id = 3
 popup/item_1/text = "1920x1080"
+popup/item_1/id = 1
 popup/item_2/text = "1600x900"
 popup/item_2/id = 1
 popup/item_3/text = "1280x720"
@@ -788,6 +789,7 @@ layout_mode = 2
 text = "Exit"
 
 [connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenu/LoadGame" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="MainMenu/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainMenu/QuiteButton" to="." method="_on_quite_button_pressed"]
 [connection signal="value_changed" from="SettingsMenu/Volume" to="." method="_on_volume_value_changed"]

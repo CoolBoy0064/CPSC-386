@@ -15,11 +15,21 @@ run/main_scene="res://title_screen.tscn"
 config/features=PackedStringArray("4.3")
 config/icon="res://icon.png"
 
+[autoload]
+
+SaveGame="*res://SaveGame.gd"
+LoadGame="res://LoadGame.gd"
+
 [display]
 
 window/size/viewport_width=3440
 window/size/viewport_height=1440
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
+
+[global_group]
+
+Persist="will be effected by save data"
+Loading=""
 
 [input]
 

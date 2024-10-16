@@ -19,7 +19,7 @@ var dead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$HealthBar.value = MAX_HEALTH
+	$HealthBar.value = health
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -123,6 +123,13 @@ func handle_hit(dmg):
 		$GameOver.show()
 	$HealthBar.value = health
 	
-func isPlayer():
-	return true
-	
+func save():
+	var save_dict = {
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x, # Vector2 is not supported by JSON
+		"pos_y" : position.y,
+		"health" : health,
+		"MAX_HEALTH" : MAX_HEALTH,
+	}
+	return save_dict
